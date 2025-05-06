@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Security Confirmation</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <style>
+        body { margin: 0; padding: 0; }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .dialog-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .button {
+            padding: 8px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="overlay">
+        <div class="dialog-content">
+            <h3>This email contains sensitive content</h3>
+            <p>Please click OK to continue.</p>
+            <button id="confirmOk" class="button">OK</button>
+        </div>
+    </div>
+
+    <script>
+        Office.initialize = () => {
+            document.getElementById("confirmOk").addEventListener("click", () => {
+                Office.context.ui.messageParent("ok");
+            });
+
+            // Alert when clicking overlay background
+            document.getElementById("overlay").addEventListener("click", function(e) {
+                if (e.target === this) {
+                    alert("Please click OK to proceed.");
+                }
+            });
+        };
+    </script>
+</body>
+</html>

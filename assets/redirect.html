@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <h1>Login Successfully</h1>
+
+    <script>
+        Office.initialize = function () {
+            var address_link = window.location.href;
+            console.log(address_link)
+            var address_arr = address_link.split("=");
+            var address_token = address_arr[1];
+            var id_token = address_token.split("&");
+            console.log(id_token[0])
+            Office.context.ui.messageParent(id_token[0]);
+        }
+    </script>
+</body>
+
+</html>
